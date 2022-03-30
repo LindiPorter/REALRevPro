@@ -19,12 +19,12 @@ public class ClientsPosgresDAO implements ClientsDAO {
 
 		PreparedStatement pstmt;
 		try {
-			pstmt = conn.prepareStatement("Insert into Clients Values (?,?)");
+			pstmt = conn.prepareStatement("Insert into clients Values (?,?)");
 			pstmt.setInt(1, c1.getId());
 			pstmt.setString(2, c1.getName());
 			pstmt.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return null;
@@ -68,7 +68,7 @@ public class ClientsPosgresDAO implements ClientsDAO {
 		List<ClientsEntities> ct1List = new ArrayList<ClientsEntities>();
 		
 		try {Connection conn = ConnectionUtils.createConnection();
-		String selectClients = "SELECT * from Clients WHERE id=?";
+		String selectClients = "SELECT * from clients WHERE id=?";
 			PreparedStatement pstmt = conn.prepareStatement(selectClients);
 			pstmt.setInt(1, cid);
 			ResultSet rs = pstmt.executeQuery();
@@ -96,12 +96,12 @@ public class ClientsPosgresDAO implements ClientsDAO {
 		Connection conn = ConnectionUtils.createConnection();
 
 		try {
-			PreparedStatement pstmt = conn.prepareStatement("UPDATE Clients set full_name=? WHERE id=?");
+			PreparedStatement pstmt = conn.prepareStatement("UPDATE clients set full_name=? WHERE id=?");
 			pstmt.setString(1, c1.getName());
 			pstmt.setInt(2, id);
 			pstmt.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	
@@ -113,11 +113,12 @@ public class ClientsPosgresDAO implements ClientsDAO {
 		// int cid= Integer.parseInt(ctx.pathParam("id"));
 		Connection conn = ConnectionUtils.createConnection();
 		try {
-			PreparedStatement pstmt = conn.prepareStatement("DELETE from Clients WHERE id=?");
+			PreparedStatement pstmt = conn.prepareStatement("DELETE from clients WHERE id=?");
 			pstmt.setInt(1, cid);
 			pstmt.execute();
+			return true; 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 

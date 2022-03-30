@@ -1,9 +1,5 @@
 package com.revature.project0;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.project0.daos.ClientsDAO;
@@ -95,6 +91,7 @@ public class ProjectHandler {
 	public static Handler updateClients = ctx -> {
 		int id= Integer.parseInt(ctx.pathParam("id"));
 		ClientsEntities c1 = ctx.bodyAsClass(ClientsEntities.class);
+		ClientsEntities c2 = dao.updateClients(c1, id);
 		
 		/*Connection conn = ConnectionUtils.createConnection();
 		
@@ -103,25 +100,30 @@ public class ProjectHandler {
 		pstmt.setInt(2, id);
 		pstmt.execute();*/
 		
+		if (c2==null) {
+			ctx.status(404);
+		} else {
 		ctx.status(200);
-		
+	}
 		//pstmt.close();
-		
 	
 		
 	};
 	
 	public static Handler deleteClients = ctx -> {
 		int cid= Integer.parseInt(ctx.pathParam("id"));
+		if (dao.deleteClients(cid)) {
+			ctx.status(205);
+	
+		} else {
+			ctx.status(404);
+		}
 		/*Connection conn = ConnectionUtils.createConnection();
 		PreparedStatement pstmt = conn.prepareStatement("DELETE from Clients WHERE id=?");
 		pstmt.setInt(1, cid);
 		pstmt.execute();*/
 		
-		ctx.status(205);
-		
-		if(cid==0)
-		ctx.status(404);
+		//ctx.status(205);
 		
 		//pstmt.close();
 			

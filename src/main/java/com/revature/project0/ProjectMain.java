@@ -23,7 +23,7 @@ public class ProjectMain {
 		app.delete("clients/{id}", ProjectHandler.deleteClients);
 		
 		// Create New Account for Client with id of 5 (return 201)
-		app.post("clients/{id}/{account}", AccountsHandler.createAccountById);
+		app.post("clients/{id}/accounts", AccountsHandler.createAccountById);
 		
 		// Get all Accounts for Client with id of 7 (return 404 if does not exist)
 		app.get("clients/{id}/accounts", AccountsHandler.getAccountsById);

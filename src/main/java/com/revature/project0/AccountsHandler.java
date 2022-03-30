@@ -1,16 +1,10 @@
 package com.revature.project0;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.project0.daos.AccountPosgresDAO;
 import com.revature.project0.daos.AccountsDAO;
 import com.revature.project0.entities.AccountEntities;
-import com.revature.project0.entities.ClientsEntities;
-
 import io.javalin.http.Handler;
 
 public class AccountsHandler {
